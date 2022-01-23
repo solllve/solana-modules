@@ -17,14 +17,23 @@ module.exports = {
         return new solanaWeb3.Connection(solanaWeb3.clusterApiUrl(env));
     },
     generateKeyPair: () => {
-        const {Keypair} = require("@solana/web3.js")
-        let keypair = Keypair.generate()
-        return keypair
+        return solanaWeb3.Keypair.generate()
     },
     accessWalletFromSecret: (arr) => {
-        let secret = Uint8(arr)
-        const {Keypair} = require("@solana/web3.js")
-        let keypair = Keypair.fromSecretKey(secret)
-        return keypair
+        let secret = module.exports.uInt8(arr)
+        return solanaWeb3.Keypair.fromSecretKey(secret)
+    },
+    transaction: () => {
+        let fromKeypair = module.exports.generateKeyPair();
+        let toKeypair = module.exports.generateKeyPair();
+        let transaction = new solanaWeb3.Transaction();
+        transaction.add(
+            solanaWeb3.SystemProgram.transfer({
+                fromPubkey: fromKeypair.publicKey,
+                toPubkey: toKeypair.publicKey,
+                lamports: solanaWeb3.LAMPORTS_PER_SOL
+            })
+        );
     }
 }
+

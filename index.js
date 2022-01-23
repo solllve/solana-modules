@@ -13,6 +13,9 @@ module.exports = {
     b64: (arr) => {
         return Buffer.from(arr).toString('base64');
     },
+    connection: (env) => {
+        return new solanaWeb3.Connection(solanaWeb3.clusterApiUrl(env));
+    },
     generateKeyPair: () => {
         const {Keypair} = require("@solana/web3.js")
         let keypair = Keypair.generate()
@@ -25,3 +28,5 @@ module.exports = {
         return keypair
     }
 }
+
+console.log(module.exports.connection('testnet'))

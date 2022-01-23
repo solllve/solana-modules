@@ -21,6 +21,9 @@ module.exports = {
     uInt8: (arr) => {
         return Uint8Array.from(arr)
     },
+    b64: (arr) => {
+        return Buffer.from(arr).toString('base64');
+    },
     generateKeyPair: () => {
         const {Keypair} = require("@solana/web3.js")
         let keypair = Keypair.generate()
@@ -32,7 +35,8 @@ module.exports = {
         let keypair = Keypair.fromSecretKey(secret)
         return keypair
     }
+
 }
 
 
-console.log(module.exports.uInt8(keypairSecret))
+console.log(module.exports.b64(module.exports.uInt8(keypairSecret)))

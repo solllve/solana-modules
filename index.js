@@ -28,5 +28,3 @@ module.exports = {
         return keypair
     }
 }
-
-console.log(module.exports.connection('testnet'))

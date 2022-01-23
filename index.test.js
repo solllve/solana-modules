@@ -1,5 +1,11 @@
 const app = require('./index')
 
-test('public key is uInt8', () => {
-    expect(typeof app.uInt8 !== 'object').toBe(true)
+console.log(app.connection('testnet'))
+
+test('public key is object', () => {
+    expect(typeof app.keypairPubId === 'object').toBe(true)
+})
+
+test('secret is object', () => {
+    expect(typeof app.keypairPubId === 'object').toBe(true)
 })

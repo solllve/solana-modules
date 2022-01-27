@@ -26,8 +26,9 @@ test('generate keypair', () => {
     expect(typeof app.generateKeyPair() === 'object').toBe(true)
 })
 
-// test('generate keypair', () => {
-//     expect(typeof app.generateKeyPair() === 'object').toBe(true)
-// })
+test('generate keypair', () => {
+    expect(typeof app.generateKeyPair() === 'object').toBe(true)
+})
+
 
 console.log(app.transaction(keypairPubId, keypairPubId))

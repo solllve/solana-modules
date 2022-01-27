@@ -17,9 +17,9 @@ module.exports = {
         }
         return console.error('not a valid environment. Please use testnet, devnet or mainnet')
     },
-    connectionSlot: async (env) => {
-        let connection = module.exports.connection(env)
+    connectionSlot: async (connection) => {
         let slot = await connection.getSlot();
+        console.log(slot);
     },
     generateKeyPair: () => web3.Keypair.generate(),
     accessWalletFromSecret: (arr) => {
@@ -79,7 +79,7 @@ module.exports = {
         }));
 
         await web3.sendAndConfirmTransaction(connection, allocateTransaction, [payer, keypair]);
-    }
-    
+    }   
 }
 
+module.exports.connectionSlot(module.exports.connection('devnet'))
